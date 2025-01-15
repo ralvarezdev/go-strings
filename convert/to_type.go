@@ -18,7 +18,7 @@ func ToInt(value string, dest interface{}) error {
 	// Parse the string to an int
 	i, err := strconv.Atoi(value)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseIntFailed, value)
 	}
 	*destPtr = i
 	return nil
@@ -34,7 +34,7 @@ func ToInt8(value string, dest interface{}) error {
 
 	i, err := strconv.ParseInt(value, 10, 8)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseInt8Failed, value)
 	}
 	*destPtr = int8(i)
 	return nil
@@ -50,7 +50,7 @@ func ToInt16(value string, dest interface{}) error {
 
 	i, err := strconv.ParseInt(value, 10, 16)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseInt16Failed, value)
 	}
 	*destPtr = int16(i)
 	return nil
@@ -66,7 +66,7 @@ func ToInt32(value string, dest interface{}) error {
 
 	i, err := strconv.ParseInt(value, 10, 32)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseInt32Failed, value)
 	}
 	*destPtr = int32(i)
 	return nil
@@ -82,7 +82,7 @@ func ToInt64(value string, dest interface{}) error {
 
 	i, err := strconv.ParseInt(value, 10, 64)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseInt64Failed, value)
 	}
 	*destPtr = i
 	return nil
@@ -98,7 +98,7 @@ func ToUint(value string, dest interface{}) error {
 
 	i, err := strconv.ParseUint(value, 10, 0)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseUintFailed, value)
 	}
 	*destPtr = uint(i)
 	return nil
@@ -114,7 +114,7 @@ func ToUint8(value string, dest interface{}) error {
 
 	i, err := strconv.ParseUint(value, 10, 8)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseUint8Failed, value)
 	}
 	*destPtr = uint8(i)
 	return nil
@@ -130,7 +130,7 @@ func ToUint16(value string, dest interface{}) error {
 
 	u, err := strconv.ParseUint(value, 10, 16)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseUint16Failed, value)
 	}
 	*destPtr = uint16(u)
 	return nil
@@ -146,7 +146,7 @@ func ToUint32(value string, dest interface{}) error {
 
 	u, err := strconv.ParseUint(value, 10, 32)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseUint32Failed, value)
 	}
 	*destPtr = uint32(u)
 	return nil
@@ -162,7 +162,7 @@ func ToUint64(value string, dest interface{}) error {
 
 	u, err := strconv.ParseUint(value, 10, 64)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseUint64Failed, value)
 	}
 	*destPtr = u
 	return nil
@@ -178,7 +178,7 @@ func ToFloat32(value string, dest interface{}) error {
 
 	f, err := strconv.ParseFloat(value, 32)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseFloat32Failed, value)
 	}
 	*destPtr = float32(f)
 	return nil
@@ -194,7 +194,7 @@ func ToFloat64(value string, dest interface{}) error {
 
 	f, err := strconv.ParseFloat(value, 64)
 	if err != nil {
-		return err
+		return fmt.Errorf(ErrParseFloat64Failed, value)
 	}
 	*destPtr = f
 	return nil
@@ -208,6 +208,14 @@ func ToBool(value string, dest interface{}) error {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Bool.String())
 	}
 
-	*destPtr = value == strings.ToLower(strings.TrimSpace("true"))
-	return nil
+	parsedValue := strings.ToLower(strings.TrimSpace(value))
+	if parsedValue == "true" || parsedValue == "1" || parsedValue == "yes" || parsedValue == "y" {
+		*destPtr = true
+		return nil
+	} else if parsedValue == "false" || parsedValue == "0" || parsedValue == "no" || parsedValue == "n" {
+		*destPtr = false
+		return nil
+	}
+
+	return fmt.Errorf(ErrParseBoolFailed, value)
 }
