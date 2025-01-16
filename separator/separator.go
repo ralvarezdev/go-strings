@@ -24,10 +24,13 @@ type (
 
 // Separator constants
 const (
-	Space   Separator = " "
-	Comma   Separator = ","
-	NewLine Separator = "\n"
-	Tab     Separator = "\t"
+	Space     Separator = " "
+	Comma     Separator = ","
+	NewLine   Separator = "\n"
+	Tab       Separator = "\t"
+	Dots      Separator = ":"
+	Slash     Separator = "/"
+	Backslash Separator = "\\"
 )
 
 // NewContent creates a new content separator
