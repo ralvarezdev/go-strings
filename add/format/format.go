@@ -21,29 +21,29 @@ func StringArray(
 	// Check if there is only one element
 	if len(*stringArray) == 1 {
 		return addCharactersFn(
-			gostringsseparator.NewRepeatedContent(multilineSeparator.SingleLine),
+			gostringsseparator.NewRepeatedContent(multilineSeparator.SingleLine()),
 			(*stringArray)[0],
 		)
 	} else {
 		var formattedDetails strings.Builder
 
 		// Separators
-		lineSeparator := multilineSeparator.Line
-		tabSeparator := multilineSeparator.Tab()
-		lineAndTabSeparator := lineSeparator + tabSeparator
+		lineSeparatorStr := multilineSeparator.LineStr()
+		tabSeparatorStr := multilineSeparator.TabStr()
+		lineAndTabSeparatorStr := lineSeparatorStr + tabSeparatorStr
 
 		// Add formatted details
-		formattedDetails.WriteString(string(tabSeparator))
+		formattedDetails.WriteString(tabSeparatorStr)
 		for i, str := range *stringArray {
 			formattedDetails.WriteString(str)
 
 			if i < len(*stringArray)-1 {
-				formattedDetails.WriteString(string(lineAndTabSeparator))
+				formattedDetails.WriteString(lineAndTabSeparatorStr)
 			}
 		}
 
 		return addCharactersFn(
-			gostringsseparator.NewRepeatedContent(lineSeparator),
+			gostringsseparator.NewRepeatedContent(multilineSeparator.Line()),
 			formattedDetails.String(),
 		)
 	}

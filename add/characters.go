@@ -25,9 +25,9 @@ func Characters(
 	return strings.Join(
 		[]string{
 			leftCharacters,
-			string(contentSeparator.Left),
+			contentSeparator.LeftStr(),
 			content,
-			string(contentSeparator.Right),
+			contentSeparator.RightStr(),
 			rightCharacters,
 		}, "",
 	)

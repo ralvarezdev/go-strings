@@ -10,15 +10,15 @@ type (
 
 	// Content is the separator for the content
 	Content struct {
-		Left  Separator
-		Right Separator
+		left  Separator
+		right Separator
 	}
 
 	// Multiline is the separator for the multiline content
 	Multiline struct {
-		SingleLine Separator
-		Line       Separator
-		TabSize    int
+		singleLine Separator
+		line       Separator
+		tabSize    int
 	}
 )
 
@@ -36,9 +36,29 @@ const (
 // NewContent creates a new content separator
 func NewContent(left, right Separator) *Content {
 	return &Content{
-		Left:  left,
-		Right: right,
+		left,
+		right,
 	}
+}
+
+// Left returns the left separator
+func (c *Content) Left() Separator {
+	return c.left
+}
+
+// LeftStr returns the left separator as a string
+func (c *Content) LeftStr() string {
+	return string(c.left)
+}
+
+// Right returns the right separator
+func (c *Content) Right() Separator {
+	return c.right
+}
+
+// RightStr returns the right separator as a string
+func (c *Content) RightStr() string {
+	return string(c.right)
 }
 
 // NewRepeatedContent creates a new content separator with the same separator
@@ -52,13 +72,38 @@ func NewMultiline(
 	tabSize int,
 ) *Multiline {
 	return &Multiline{
-		SingleLine: singleLine,
-		Line:       line,
-		TabSize:    tabSize,
+		singleLine,
+		line,
+		tabSize,
 	}
 }
 
-// Tab returns a tab separator
-func (m *Multiline) Tab() Separator {
-	return Separator(strings.Repeat(string(Tab), m.TabSize))
+// SingleLine returns the single line separator
+func (m *Multiline) SingleLine() Separator {
+	return m.singleLine
+}
+
+// SingleLineStr returns the single line separator as a string
+func (m *Multiline) SingleLineStr() string {
+	return string(m.singleLine)
+}
+
+// Line returns the line separator
+func (m *Multiline) Line() Separator {
+	return m.line
+}
+
+// LineStr returns the line separator as a string
+func (m *Multiline) LineStr() string {
+	return string(m.line)
+}
+
+// TabSize returns the tab size
+func (m *Multiline) TabSize() int {
+	return m.tabSize
+}
+
+// TabStr returns the tab as a string
+func (m *Multiline) TabStr() string {
+	return strings.Repeat(string(Tab), m.tabSize)
 }

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"reflect"
 	"strconv"
-	"strings"
 )
 
 // ToInt converts a string to an int
@@ -208,14 +207,10 @@ func ToBool(value string, dest interface{}) error {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Bool.String())
 	}
 
-	parsedValue := strings.ToLower(strings.TrimSpace(value))
-	if parsedValue == "true" || parsedValue == "1" || parsedValue == "yes" || parsedValue == "y" {
-		*destPtr = true
-		return nil
-	} else if parsedValue == "false" || parsedValue == "0" || parsedValue == "no" || parsedValue == "n" {
-		*destPtr = false
-		return nil
+	b, err := strconv.ParseBool(value)
+	if err != nil {
+		return fmt.Errorf(ErrParseBoolFailed, value)
 	}
-
-	return fmt.Errorf(ErrParseBoolFailed, value)
+	*destPtr = b
+	return nil
 }
