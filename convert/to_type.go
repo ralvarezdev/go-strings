@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-// ToInt converts a string to an int
+// ToInt sets the destination to the value of the string as an int
 func ToInt(value string, dest interface{}) error {
 	// Parse the destination to an int pointer
 	destPtr, ok := dest.(*int)
@@ -23,7 +23,7 @@ func ToInt(value string, dest interface{}) error {
 	return nil
 }
 
-// ToInt8 converts a string to an int8
+// ToInt8 sets the destination to the value of the string as an int8
 func ToInt8(value string, dest interface{}) error {
 	// Parse the destination to an int8 pointer
 	destPtr, ok := dest.(*int8)
@@ -39,7 +39,7 @@ func ToInt8(value string, dest interface{}) error {
 	return nil
 }
 
-// ToInt16 converts a string to an int16
+// ToInt16 sets the destination to the value of the string as an int16
 func ToInt16(value string, dest interface{}) error {
 	// Parse the destination to an int16 pointer
 	destPtr, ok := dest.(*int16)
@@ -55,7 +55,7 @@ func ToInt16(value string, dest interface{}) error {
 	return nil
 }
 
-// ToInt32 converts a string to an int32
+// ToInt32 sets the destination to the value of the string as an int32
 func ToInt32(value string, dest interface{}) error {
 	// Parse the destination to an int32 pointer
 	destPtr, ok := dest.(*int32)
@@ -71,7 +71,7 @@ func ToInt32(value string, dest interface{}) error {
 	return nil
 }
 
-// ToInt64 converts a string to an int64
+// ToInt64 sets the destination to the value of the string as an int64
 func ToInt64(value string, dest interface{}) error {
 	// Parse the destination to an int64 pointer
 	destPtr, ok := dest.(*int64)
@@ -87,7 +87,7 @@ func ToInt64(value string, dest interface{}) error {
 	return nil
 }
 
-// ToUint converts a string to an uint
+// ToUint sets the destination to the value of the string as an uint
 func ToUint(value string, dest interface{}) error {
 	// Parse the destination to a uint pointer
 	destPtr, ok := dest.(*uint)
@@ -103,7 +103,7 @@ func ToUint(value string, dest interface{}) error {
 	return nil
 }
 
-// ToUint8 converts a string to an uint8
+// ToUint8 sets the destination to the value of the string as an uint8
 func ToUint8(value string, dest interface{}) error {
 	// Parse the destination to a uint8 pointer
 	destPtr, ok := dest.(*uint8)
@@ -119,7 +119,7 @@ func ToUint8(value string, dest interface{}) error {
 	return nil
 }
 
-// ToUint16 converts a string to an uint16
+// ToUint16 sets the destination to the value of the string as an uint16
 func ToUint16(value string, dest interface{}) error {
 	// Parse the destination to a uint16 pointer
 	destPtr, ok := dest.(*uint16)
@@ -135,7 +135,7 @@ func ToUint16(value string, dest interface{}) error {
 	return nil
 }
 
-// ToUint32 converts a string to an uint32
+// ToUint32 sets the destination to the value of the string as an uint32
 func ToUint32(value string, dest interface{}) error {
 	// Parse the destination to a uint32 pointer
 	destPtr, ok := dest.(*uint32)
@@ -151,7 +151,7 @@ func ToUint32(value string, dest interface{}) error {
 	return nil
 }
 
-// ToUint64 converts a string to an uint64
+// ToUint64 sets the destination to the value of the string as an uint64
 func ToUint64(value string, dest interface{}) error {
 	// Parse the destination to a uint64 pointer
 	destPtr, ok := dest.(*uint64)
@@ -167,7 +167,7 @@ func ToUint64(value string, dest interface{}) error {
 	return nil
 }
 
-// ToFloat32 converts a string to a float32
+// ToFloat32 sets the destination to the value of the string as a float32
 func ToFloat32(value string, dest interface{}) error {
 	// Parse the destination to a float32 pointer
 	destPtr, ok := dest.(*float32)
@@ -183,7 +183,7 @@ func ToFloat32(value string, dest interface{}) error {
 	return nil
 }
 
-// ToFloat64 converts a string to a float64
+// ToFloat64 sets the destination to the value of the string as a float64
 func ToFloat64(value string, dest interface{}) error {
 	// Parse the destination to a float64 pointer
 	destPtr, ok := dest.(*float64)
@@ -199,7 +199,7 @@ func ToFloat64(value string, dest interface{}) error {
 	return nil
 }
 
-// ToBool converts a string to a bool
+// ToBool sets the destination to the value of the string as a bool
 func ToBool(value string, dest interface{}) error {
 	// Parse the destination to a bool pointer
 	destPtr, ok := dest.(*bool)
@@ -212,5 +212,17 @@ func ToBool(value string, dest interface{}) error {
 		return fmt.Errorf(ErrParseBoolFailed, value)
 	}
 	*destPtr = b
+	return nil
+}
+
+// ToString sets the destination to the value of the string
+func ToString(value string, dest interface{}) error {
+	// Parse the destination to a string pointer
+	destPtr, ok := dest.(*string)
+	if !ok {
+		return fmt.Errorf(ErrInvalidDestinationType, reflect.String.String())
+	}
+
+	*destPtr = value
 	return nil
 }
