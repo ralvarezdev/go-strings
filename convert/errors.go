@@ -15,4 +15,5 @@ var (
 	ErrParseFloat32Failed     = "cannot parse '%s', expected float of 32 bits"
 	ErrParseFloat64Failed     = "cannot parse '%s', expected float of 64 bits"
 	ErrParseBoolFailed        = "cannot parse '%s', expected boolean"
+	ErrInvalidDurationUnit    = "invalid duration unit, expected: '%s'"
 )
