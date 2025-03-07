@@ -51,3 +51,25 @@ func Lowercase(s string) int {
 	}
 	return count
 }
+
+// Alphabetic counts the number of alphabetic characters in a string
+func Alphabetic(s string) int {
+	count := 0
+	for _, r := range s {
+		if (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') {
+			count++
+		}
+	}
+	return count
+}
+
+// Alphanumeric counts the number of alphanumeric characters in a string
+func Alphanumeric(s string) int {
+	count := 0
+	for _, r := range s {
+		if (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9') {
+			count++
+		}
+	}
+	return count
+}
