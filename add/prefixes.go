@@ -1,8 +1,9 @@
 package add
 
 import (
-	gostringsseparator "github.com/ralvarezdev/go-strings/separator"
 	"strings"
+
+	gostringsseparator "github.com/ralvarezdev/go-strings/separator"
 )
 
 // Prefixes returns a string with the given content and prefixes

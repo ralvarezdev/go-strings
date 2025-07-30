@@ -1,10 +1,11 @@
 package format
 
 import (
+	"strings"
+
 	gostringsadd "github.com/ralvarezdev/go-strings/add"
 	gostringsconvert "github.com/ralvarezdev/go-strings/convert"
 	gostringsseparator "github.com/ralvarezdev/go-strings/separator"
-	"strings"
 )
 
 // StringArray returns a string with all the strings in the array formatted
