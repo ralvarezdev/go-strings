@@ -5,24 +5,24 @@ import (
 )
 
 type (
-	// Separator is the separator for a string
+	// Separator represents a string separator.
 	Separator string
 
-	// Content is the separator for the content
+	// Content represents a pair of left and right separators for content.
 	Content struct {
-		left  Separator
-		right Separator
+		left  Separator // left is the left separator
+		right Separator // right is the right separator
 	}
 
-	// Multiline is the separator for the multiline content
+	// Multiline represents separators for formatting multiline content.
 	Multiline struct {
-		singleLine Separator
-		line       Separator
-		tabSize    int
+		singleElement    Separator // singleElement is the separator for a single element
+		multipleElements Separator // multipleElements is the separator for multiple elements
+		tabSize          int       // tabSize is the number of tabs to use for indentation
 	}
 )
 
-// Separator constants
+// Separator constants for common separators.
 const (
 	Space     Separator = " "
 	Comma     Separator = ","
@@ -33,7 +33,16 @@ const (
 	Backslash Separator = "\\"
 )
 
-// NewContent creates a new content separator
+// NewContent creates a new Content separator with the specified left and right separators.
+//
+// Parameters:
+//
+//	left  - the left separator
+//	right - the right separator
+//
+// Returns:
+//
+//	A pointer to a Content struct.
 func NewContent(left, right Separator) *Content {
 	return &Content{
 		left,
@@ -41,32 +50,50 @@ func NewContent(left, right Separator) *Content {
 	}
 }
 
-// Left returns the left separator
+// Left returns the left separator of the Content.
 func (c *Content) Left() Separator {
 	return c.left
 }
 
-// LeftStr returns the left separator as a string
+// LeftStr returns the left separator as a string.
 func (c *Content) LeftStr() string {
 	return string(c.left)
 }
 
-// Right returns the right separator
+// Right returns the right separator of the Content.
 func (c *Content) Right() Separator {
 	return c.right
 }
 
-// RightStr returns the right separator as a string
+// RightStr returns the right separator as a string.
 func (c *Content) RightStr() string {
 	return string(c.right)
 }
 
-// NewRepeatedContent creates a new content separator with the same separator
+// NewRepeatedContent creates a new Content separator with the same separator for both left and right.
+//
+// Parameters:
+//
+//	separator - the separator to use for both left and right
+//
+// Returns:
+//
+//	A pointer to a Content struct.
 func NewRepeatedContent(separator Separator) *Content {
 	return NewContent(separator, separator)
 }
 
-// NewMultiline creates a new multiline separator
+// NewMultiline creates a new Multiline separator with the specified single line, multiple line separators, and tab size.
+//
+// Parameters:
+//
+//	singleLine - the separator for a single element
+//	line       - the separator for multiple elements
+//	tabSize    - the number of tabs to use for indentation
+//
+// Returns:
+//
+//	A pointer to a Multiline struct.
 func NewMultiline(
 	singleLine, line Separator,
 	tabSize int,
@@ -78,32 +105,32 @@ func NewMultiline(
 	}
 }
 
-// SingleLine returns the single line separator
-func (m *Multiline) SingleLine() Separator {
-	return m.singleLine
+// SingleElement returns the separator for a single element.
+func (m *Multiline) SingleElement() Separator {
+	return m.singleElement
 }
 
-// SingleLineStr returns the single line separator as a string
-func (m *Multiline) SingleLineStr() string {
-	return string(m.singleLine)
+// SingleElementStr returns the single element separator as a string.
+func (m *Multiline) SingleElementStr() string {
+	return string(m.singleElement)
 }
 
-// Line returns the line separator
-func (m *Multiline) Line() Separator {
-	return m.line
+// MultipleElements returns the separator for multiple elements.
+func (m *Multiline) MultipleElements() Separator {
+	return m.multipleElements
 }
 
-// LineStr returns the line separator as a string
-func (m *Multiline) LineStr() string {
-	return string(m.line)
+// MultipleElementsStr returns the multiple elements separator as a string.
+func (m *Multiline) MultipleElementsStr() string {
+	return string(m.multipleElements)
 }
 
-// TabSize returns the tab size
+// TabSize returns the tab size used for indentation.
 func (m *Multiline) TabSize() int {
 	return m.tabSize
 }
 
-// TabStr returns the tab as a string
+// TabStr returns the tab separator as a string, repeated tabSize times.
 func (m *Multiline) TabStr() string {
 	return strings.Repeat(string(Tab), m.tabSize)
 }

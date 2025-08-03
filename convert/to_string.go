@@ -10,7 +10,15 @@ var (
 	validUnits = []string{"ns", "us", "ms", "s", "m", "h", "d"}
 )
 
-// ErrorArrayToStringArray maps an array of errors to an array of strings
+// ErrorArrayToStringArray maps an array of errors to an array of strings.
+//
+// Parameters:
+//
+//	errorArray - pointer to a slice of errors to convert
+//
+// Returns:
+//
+//	Pointer to a slice of strings containing the error messages, or nil if input is nil or empty.
 func ErrorArrayToStringArray(errorArray *[]error) *[]string {
 	if errorArray == nil || len(*errorArray) == 0 {
 		return nil
@@ -24,7 +32,16 @@ func ErrorArrayToStringArray(errorArray *[]error) *[]string {
 	return &stringArray
 }
 
-// PrettyDuration formats a duration without zero units
+// PrettyDuration formats a duration as a human-readable string, omitting zero-value units.
+//
+// Parameters:
+//
+//	d       - the duration to format
+//	minUnit - the minimum unit to include (one of "ns", "us", "ms", "s", "m", "h", "d")
+//
+// Returns:
+//
+//	A formatted string representing the duration, and an error if minUnit is invalid.
 func PrettyDuration(d time.Duration, minUnit string) (string, error) {
 	if d == 0 {
 		return "0s", nil

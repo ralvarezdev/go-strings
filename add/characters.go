@@ -7,11 +7,32 @@ import (
 )
 
 type (
-	// CharactersFn is a function that adds characters to a string
-	CharactersFn func(*gostringsseparator.Content, string) string
+	// CharactersFn is a function type that adds characters to a string.
+	//
+	// Parameters:
+	//   contentSeparator - pointer to a Content struct for separators
+	//   content          - the string to which characters will be added
+	//
+	// Returns:
+	//   The resulting string after adding characters.
+	CharactersFn func(
+		contentSeparator *gostringsseparator.Content,
+		content string,
+	) string
 )
 
-// Characters adds some characters to a string
+// Characters adds left and right characters to the content string, optionally using a separator.
+//
+// Parameters:
+//
+//	contentSeparator - pointer to a Content struct for separators (can be nil)
+//	content          - the main string to wrap
+//	leftCharacters   - characters to add to the left of the content
+//	rightCharacters  - characters to add to the right of the content
+//
+// Returns:
+//
+//	The resulting string with added characters and optional separators.
 func Characters(
 	contentSeparator *gostringsseparator.Content,
 	content, leftCharacters, rightCharacters string,
@@ -34,7 +55,16 @@ func Characters(
 	)
 }
 
-// Brackets adds brackets to a string
+// Brackets adds square brackets around the content string, optionally using a separator.
+//
+// Parameters:
+//
+//	contentSeparator - pointer to a Content struct for separators (can be nil)
+//	content          - the string to wrap in brackets
+//
+// Returns:
+//
+//	The resulting string wrapped in square brackets.
 func Brackets(
 	contentSeparator *gostringsseparator.Content,
 	content string,
@@ -42,7 +72,16 @@ func Brackets(
 	return Characters(contentSeparator, content, "[", "]")
 }
 
-// CurlyBrackets adds curly brackets to a string
+// CurlyBrackets adds curly brackets around the content string, optionally using a separator.
+//
+// Parameters:
+//
+//	contentSeparator - pointer to a Content struct for separators (can be nil)
+//	content          - the string to wrap in curly brackets
+//
+// Returns:
+//
+//	The resulting string wrapped in curly brackets.
 func CurlyBrackets(
 	contentSeparator *gostringsseparator.Content,
 	content string,
@@ -50,7 +89,16 @@ func CurlyBrackets(
 	return Characters(contentSeparator, content, "{", "}")
 }
 
-// Parentheses adds parentheses to a string
+// Parentheses adds parentheses around the content string, optionally using a separator.
+//
+// Parameters:
+//
+//	contentSeparator - pointer to a Content struct for separators (can be nil)
+//	content          - the string to wrap in parentheses
+//
+// Returns:
+//
+//	The resulting string wrapped in parentheses.
 func Parentheses(
 	contentSeparator *gostringsseparator.Content,
 	content string,
