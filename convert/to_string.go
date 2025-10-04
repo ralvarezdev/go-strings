@@ -18,18 +18,18 @@ var (
 //
 // Returns:
 //
-//	Pointer to a slice of strings containing the error messages, or nil if input is nil or empty.
-func ErrorArrayToStringArray(errorArray *[]error) *[]string {
-	if errorArray == nil || len(*errorArray) == 0 {
+//	Slice of strings containing the error messages, or nil if input is nil or empty.
+func ErrorArrayToStringArray(errorArray []error) []string {
+	if errorArray == nil || len(errorArray) == 0 {
 		return nil
 	}
 
 	// Map the errors to strings
-	stringArray := make([]string, len(*errorArray))
-	for i, err := range *errorArray {
+	stringArray := make([]string, len(errorArray))
+	for i, err := range errorArray {
 		stringArray[i] = err.Error()
 	}
-	return &stringArray
+	return stringArray
 }
 
 // PrettyDuration formats a duration as a human-readable string, omitting zero-value units.

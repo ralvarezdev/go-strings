@@ -34,11 +34,11 @@ func Repeat(s string, n int, separator gostringsseparator.Separator) string {
 //
 // Returns:
 //
-//	A pointer to a slice of strings, each element being `s`.
-func RepeatAsArray(s string, n int) *[]string {
+//	A slice of strings, each element being `s`.
+func RepeatAsArray(s string, n int) []string {
 	var result []string
 	for i := 0; i < n; i++ {
 		result = append(result, s)
 	}
-	return &result
+	return result
 }
