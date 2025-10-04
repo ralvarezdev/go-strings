@@ -10,10 +10,12 @@ type (
 	// CharactersFn is a function type that adds characters to a string.
 	//
 	// Parameters:
+	//
 	//   contentSeparator - pointer to a Content struct for separators
 	//   content          - the string to which characters will be added
 	//
 	// Returns:
+	//
 	//   The resulting string after adding characters.
 	CharactersFn func(
 		contentSeparator *gostringsseparator.Content,

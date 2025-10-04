@@ -40,21 +40,37 @@ func NewContent(left, right Separator) *Content {
 }
 
 // Left returns the left separator of the Content.
+//
+// Returns:
+//
+//	The left Separator.
 func (c Content) Left() Separator {
 	return c.left
 }
 
 // LeftStr returns the left separator as a string.
+//
+// Returns:
+//
+//	The left separator as a string.
 func (c Content) LeftStr() string {
 	return string(c.left)
 }
 
 // Right returns the right separator of the Content.
+//
+// Returns:
+//
+//	The right Separator.
 func (c Content) Right() Separator {
 	return c.right
 }
 
 // RightStr returns the right separator as a string.
+//
+// Returns:
+//
+//	The right separator as a string.
 func (c Content) RightStr() string {
 	return string(c.right)
 }
@@ -95,31 +111,55 @@ func NewMultiline(
 }
 
 // SingleElement returns the separator for a single element.
+//
+// Returns:
+//
+//	The single element Separator.
 func (m Multiline) SingleElement() Separator {
 	return m.singleElement
 }
 
 // SingleElementStr returns the single element separator as a string.
+//
+// Returns:
+//
+//	The single element separator as a string.
 func (m Multiline) SingleElementStr() string {
 	return string(m.singleElement)
 }
 
 // MultipleElements returns the separator for multiple elements.
+//
+// Returns:
+//
+//	The multiple elements Separator.
 func (m Multiline) MultipleElements() Separator {
 	return m.multipleElements
 }
 
 // MultipleElementsStr returns the multiple elements separator as a string.
+//
+// Returns:
+//
+//	The multiple elements separator as a string.
 func (m Multiline) MultipleElementsStr() string {
 	return string(m.multipleElements)
 }
 
 // TabSize returns the tab size used for indentation.
+//
+// Returns:
+//
+//	The tab size as an integer.
 func (m Multiline) TabSize() int {
 	return m.tabSize
 }
 
 // TabStr returns the tab separator as a string, repeated tabSize times.
+//
+// Returns:
+//
+//	The tab separator as a string.
 func (m Multiline) TabStr() string {
 	return strings.Repeat(string(Tab), m.tabSize)
 }
