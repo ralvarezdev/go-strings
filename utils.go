@@ -1,4 +1,4 @@
-package go_strings
+package gostrings
 
 import (
 	"strings"
@@ -23,7 +23,7 @@ func ToCamelCase(s string) string {
 		},
 	)
 	for i, part := range parts {
-		if len(part) > 0 {
+		if part != "" {
 			parts[i] = strings.ToUpper(part[:1]) + strings.ToLower(part[1:])
 		}
 	}

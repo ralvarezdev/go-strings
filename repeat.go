@@ -1,4 +1,4 @@
-package go_strings
+package gostrings
 
 import (
 	gostringsseparator "github.com/ralvarezdev/go-strings/separator"

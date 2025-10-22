@@ -40,10 +40,7 @@ func Characters(
 	content, leftCharacters, rightCharacters string,
 ) string {
 	if contentSeparator == nil {
-		return strings.Join(
-			[]string{leftCharacters, content, rightCharacters},
-			"",
-		)
+		return leftCharacters + content + rightCharacters
 	}
 
 	return strings.Join(

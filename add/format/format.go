@@ -25,7 +25,7 @@ func StringArray(
 	addCharactersFn gostringsadd.CharactersFn,
 ) string {
 	// Check if the stringArray is nil or empty, or the addCharactersFn is nil
-	if stringArray == nil || len(stringArray) == 0 || addCharactersFn == nil {
+	if len(stringArray) == 0 || addCharactersFn == nil {
 		return ""
 	}
 
@@ -35,29 +35,29 @@ func StringArray(
 			gostringsseparator.NewRepeatedContent(multilineSeparator.SingleElement()),
 			stringArray[0],
 		)
-	} else {
-		var formattedDetails strings.Builder
-
-		// Separators
-		elementSeparatorStr := multilineSeparator.MultipleElementsStr()
-		tabSeparatorStr := multilineSeparator.TabStr()
-		elementAndTabSeparatorStr := elementSeparatorStr + tabSeparatorStr
-
-		// Add formatted details
-		formattedDetails.WriteString(tabSeparatorStr)
-		for i, str := range stringArray {
-			formattedDetails.WriteString(str)
-
-			if i < len(stringArray)-1 {
-				formattedDetails.WriteString(elementAndTabSeparatorStr)
-			}
-		}
-
-		return addCharactersFn(
-			gostringsseparator.NewRepeatedContent(multilineSeparator.MultipleElements()),
-			formattedDetails.String(),
-		)
 	}
+
+	var formattedDetails strings.Builder
+
+	// Separators
+	elementSeparatorStr := multilineSeparator.MultipleElementsStr()
+	tabSeparatorStr := multilineSeparator.TabStr()
+	elementAndTabSeparatorStr := elementSeparatorStr + tabSeparatorStr
+
+	// Add formatted details
+	formattedDetails.WriteString(tabSeparatorStr)
+	for i, str := range stringArray {
+		formattedDetails.WriteString(str)
+
+		if i < len(stringArray)-1 {
+			formattedDetails.WriteString(elementAndTabSeparatorStr)
+		}
+	}
+
+	return addCharactersFn(
+		gostringsseparator.NewRepeatedContent(multilineSeparator.MultipleElements()),
+		formattedDetails.String(),
+	)
 }
 
 // ErrorArray returns a formatted string containing all error messages from the given error array.

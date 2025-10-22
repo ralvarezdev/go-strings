@@ -20,7 +20,7 @@ var (
 //
 //	Slice of strings containing the error messages, or nil if input is nil or empty.
 func ErrorArrayToStringArray(errorArray []error) []string {
-	if errorArray == nil || len(errorArray) == 0 {
+	if len(errorArray) == 0 {
 		return nil
 	}
 

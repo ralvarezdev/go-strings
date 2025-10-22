@@ -88,7 +88,8 @@ func NewRepeatedContent(separator Separator) *Content {
 	return NewContent(separator, separator)
 }
 
-// NewMultiline creates a new Multiline separator with the specified single line, multiple line separators, and tab size.
+// NewMultiline creates a new Multiline separator with the specified single line, multiple line separators, and tab
+// size.
 //
 // Parameters:
 //
