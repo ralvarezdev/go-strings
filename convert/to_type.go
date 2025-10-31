@@ -16,7 +16,7 @@ import (
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to int.
-func ToInt(value string, dest interface{}) error {
+func ToInt(value string, dest any) error {
 	destPtr, ok := dest.(*int)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Int.String())
@@ -40,7 +40,7 @@ func ToInt(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to int8.
-func ToInt8(value string, dest interface{}) error {
+func ToInt8(value string, dest any) error {
 	destPtr, ok := dest.(*int8)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Int8.String())
@@ -64,7 +64,7 @@ func ToInt8(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to int16.
-func ToInt16(value string, dest interface{}) error {
+func ToInt16(value string, dest any) error {
 	destPtr, ok := dest.(*int16)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Int16.String())
@@ -88,7 +88,7 @@ func ToInt16(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to int32.
-func ToInt32(value string, dest interface{}) error {
+func ToInt32(value string, dest any) error {
 	destPtr, ok := dest.(*int32)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Int32.String())
@@ -112,7 +112,7 @@ func ToInt32(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to int64.
-func ToInt64(value string, dest interface{}) error {
+func ToInt64(value string, dest any) error {
 	destPtr, ok := dest.(*int64)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Int64.String())
@@ -136,7 +136,7 @@ func ToInt64(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to uint.
-func ToUint(value string, dest interface{}) error {
+func ToUint(value string, dest any) error {
 	destPtr, ok := dest.(*uint)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Uint.String())
@@ -160,7 +160,7 @@ func ToUint(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to uint8.
-func ToUint8(value string, dest interface{}) error {
+func ToUint8(value string, dest any) error {
 	destPtr, ok := dest.(*uint8)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Uint8.String())
@@ -184,7 +184,7 @@ func ToUint8(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to uint16.
-func ToUint16(value string, dest interface{}) error {
+func ToUint16(value string, dest any) error {
 	destPtr, ok := dest.(*uint16)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Uint16.String())
@@ -208,7 +208,7 @@ func ToUint16(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to uint32.
-func ToUint32(value string, dest interface{}) error {
+func ToUint32(value string, dest any) error {
 	destPtr, ok := dest.(*uint32)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Uint32.String())
@@ -232,7 +232,7 @@ func ToUint32(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to uint64.
-func ToUint64(value string, dest interface{}) error {
+func ToUint64(value string, dest any) error {
 	destPtr, ok := dest.(*uint64)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Uint64.String())
@@ -256,7 +256,7 @@ func ToUint64(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to float32.
-func ToFloat32(value string, dest interface{}) error {
+func ToFloat32(value string, dest any) error {
 	destPtr, ok := dest.(*float32)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Float32.String())
@@ -280,7 +280,7 @@ func ToFloat32(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to float64.
-func ToFloat64(value string, dest interface{}) error {
+func ToFloat64(value string, dest any) error {
 	destPtr, ok := dest.(*float64)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Float64.String())
@@ -304,7 +304,7 @@ func ToFloat64(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the conversion fails or the destination is not a pointer to bool.
-func ToBool(value string, dest interface{}) error {
+func ToBool(value string, dest any) error {
 	destPtr, ok := dest.(*bool)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.Bool.String())
@@ -328,7 +328,7 @@ func ToBool(value string, dest interface{}) error {
 // Returns:
 //
 //	An error if the destination is not a pointer to string.
-func ToString(value string, dest interface{}) error {
+func ToString(value string, dest any) error {
 	destPtr, ok := dest.(*string)
 	if !ok {
 		return fmt.Errorf(ErrInvalidDestinationType, reflect.String.String())
