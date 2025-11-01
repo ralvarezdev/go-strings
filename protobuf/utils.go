@@ -4,20 +4,22 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+
+	gostrings "github.com/ralvarezdev/go-strings"
 )
 
 // GetProtobufTag gets the Protobuf tag number for a given struct field name
-// 
+//
 // Parameters:
-// 
+//
 // - structField: The struct field
 // - fieldName: The name of the struct field
-// 
+//
 // Returns:
-// 
+//
 // - string: Protobuf tag
 // - error: error if the Protobuf tag is not found
-func GetProtobufTag(structField reflect.StructField, fieldName string) (string, error) {
+func GetProtobufTag(structField *reflect.StructField, fieldName string) (string, error) {
 	protobufTag := structField.Tag.Get(ProtobufTag)
 	if protobufTag == "" {
 		return "", fmt.Errorf(ErrProtobufTagNotFound, fieldName)
@@ -26,16 +28,21 @@ func GetProtobufTag(structField reflect.StructField, fieldName string) (string, 
 }
 
 // IsProtobufOneOfField checks if the struct field is a Protobuf oneof field
-// 
+//
 // Parameters:
-// 
+//
 // - structField: The struct field
-// 
+//
 // Returns:
-// 
+//
 // - bool: true if the struct field is a Protobuf oneof field
-func IsProtobufOneOfField(structField reflect.StructField) bool {
-	return structField.Tag.Get(ProtobufOneOfTag) != ""
+// - error: error if the struct field is nil
+func IsProtobufOneOfField(structField *reflect.StructField) (bool, error) {
+	// Check if the struct type is nil
+	if structField == nil {
+		return false, gostrings.ErrNilStructField
+	}
+	return structField.Tag.Get(ProtobufOneOfTag) != "", nil
 }
 
 // GetProtobufTagName returns the Protobuf tag name for a given struct field name
@@ -48,7 +55,6 @@ func IsProtobufOneOfField(structField reflect.StructField) bool {
 // Returns:
 //
 //   - string: Protobuf tag name
-//   
 func GetProtobufTagName(protobufTag, fieldName string) (string, error) {
 	for _, part := range strings.Split(protobufTag, ",") {
 		if strings.HasPrefix(part, ProtobufNamePrefix) {
@@ -78,7 +84,7 @@ func IsProtobufFieldOptional(protobufTag string) bool {
 //
 // Parameters:
 //
-//  - fieldName: The name of the struct field
+//   - fieldName: The name of the struct field
 //
 // Returns:
 //

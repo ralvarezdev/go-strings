@@ -1,6 +1,6 @@
 package json
 
 const (
-	JSONTag = "json"
-	JSONOmitempty      = "omitempty"
+	JSONTag       = "json"
+	JSONOmitempty = "omitempty"
 )

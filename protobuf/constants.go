@@ -8,7 +8,7 @@ const (
 )
 
 const (
-	State              = "state"
-	SizeCache          = "sizeCache"
-	UnknownFields      = "unknownFields"
+	State         = "state"
+	SizeCache     = "sizeCache"
+	UnknownFields = "unknownFields"
 )
