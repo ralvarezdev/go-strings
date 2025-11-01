@@ -52,3 +52,19 @@ func GetJSONTagName(jsonTag, fieldName string) (string, error) {
 	}
 	return tagParts[0], nil
 }
+
+// IsJSONFieldOptional returns true if the JSON field is optional
+//
+// Parameters:
+//
+//   - jsonTag: The JSON tag of the struct field
+//
+// Returns:
+//
+//   - bool: true if the JSON field is optional
+func IsJSONFieldOptional(jsonTag string) bool {
+	return strings.Contains(
+		jsonTag,
+		JSONOmitempty,
+	)
+}
